@@ -51,9 +51,17 @@ estiloCombate(shien, mace_windu).
 estiloCombate(niman, mace_windu).
 estiloCombate(vapaad, mace_windu).
 
-estiloCombate(shien,anakin).
-estiloCombate(soresu, obi_wan)
 
+estiloCombate(makashi,count_dooku).
+estiloCombate(makashi,darth_tyranus).
+estiloCombate(soresu,obi_wan).
+estiloCombate(ataru,yoda).
+estiloCombate(ataru,qui_gon_jinn).
+estiloCombate(shien,anakin).
+estiloCombate(shien,luke).
+estiloCombate(niman,darth_maul).
+
+estiloCombate(dun_moch,)
 
 estaMuerto(obi_wan).
 estaMuerto(anakin).
@@ -79,5 +87,7 @@ pudeCopular(X):- (not(esJedi(X));especie(cerean,X)).
 formaSiete(X):- (estiloCombate(shoto, X),estiloCombate(shii_cho, X),
 estiloCombate(makashi, X),estiloCombate(soresu, X),estiloCombate(ataru, X),
 estiloCombate(shien, X),estiloCombate(niman, X)).
+
+puedeSerCorrompido(X):- estiloCombate(vapaad,X).
 
 elegidoFuerza(X):- 
