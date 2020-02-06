@@ -51,6 +51,9 @@ estiloCombate(shien, mace_windu).
 estiloCombate(niman, mace_windu).
 estiloCombate(vapaad, mace_windu).
 
+estiloCombate(shien,anakin).
+estiloCombate(soresu, obi_wan)
+
 
 estaMuerto(obi_wan).
 estaMuerto(anakin).
@@ -69,11 +72,12 @@ aprendiz(darth_tyranus, darth_sidious).
 esSensible(X):-
 esMaestro(X):-
 esJedi(X):- (esSensible(X),(serVivo(X,Y,Z,luz);serVivo(X,Y,Z,gris))).
-esSith(X):- (esSensible(X),serVivo(X,Y,Z,oscuro))
+esSith(X):- (esSensible(X),serVivo(X,Y,Z,oscuro)).
 miembroConsejo(X):-
 puedeSerFantasma(X):-
-pudeCopular(X):- (not(esJedi(X));especie(cerean,X))
-formaSiete(X):-
-elegidoFuerza(X):- (estiloCombate(shoto, X),estiloCombate(shii_cho, X),
+pudeCopular(X):- (not(esJedi(X));especie(cerean,X)).
+formaSiete(X):- (estiloCombate(shoto, X),estiloCombate(shii_cho, X),
 estiloCombate(makashi, X),estiloCombate(soresu, X),estiloCombate(ataru, X),
-estiloCombate(shien, X),estiloCombate(niman, X))
+estiloCombate(shien, X),estiloCombate(niman, X)).
+
+elegidoFuerza(X):- 
