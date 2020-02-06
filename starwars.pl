@@ -1,6 +1,6 @@
 serVivo(anakin, 27700, m, luz).
 serVivo(darth_sidious, 20500, m, oscuridad).
-serVivo(palpatine, 20500, m, oscuridad).
+serVivo(cansiller_palpatine, 20500, m, oscuridad).
 serVivo(yoda, 17700, m, luz).
 serVivo(count_dooku, 13500, m, luz).
 serVivo(darth_tyranus, 13500, m, oscuridad).
@@ -17,8 +17,6 @@ serVivo(darth_vader,m,oscuridad).
 serVivo(darth_plagueis,m,oscuridad).
 serVivo(darth_maul,m,oscuridad).
 
-
-guardianOrden(mace_windu).
 maestroOrden(yoda).
 
 especie(humano, anakin).
@@ -40,8 +38,6 @@ especie(humano,darth_vader).
 especie(especie_plagueis, darth_plagueis).
 especie(zabrak,darth_maul).
 
-
-
 estiloCombate(shoto, mace_windu).
 estiloCombate(shii_cho, mace_windu).
 estiloCombate(makashi, mace_windu).
@@ -50,7 +46,6 @@ estiloCombate(ataru, mace_windu).
 estiloCombate(shien, mace_windu).
 estiloCombate(niman, mace_windu).
 estiloCombate(vapaad, mace_windu).
-
 
 estiloCombate(makashi,count_dooku).
 estiloCombate(makashi,darth_tyranus).
@@ -76,18 +71,35 @@ aprendiz(anakin, obi_wan).
 aprendiz(count_dooku, yoda).
 aprendiz(darth_tyranus, darth_sidious).
 
+separatista().
+republicano().
+rebelde().
+imperialista().
+
+esMaestro(obi_wan).
+esMaestro(yoda).
+esMaestro(plo_koon).
+esMaestro(mace_windu).
+esMaestro(ki_adi_mundi).
+
+amigo(anakin, canciller_palpatine).
 
 esSensible(X):-
-esMaestro(X):-
+
 esJedi(X):- (esSensible(X),(serVivo(X,Y,Z,luz);serVivo(X,Y,Z,gris))).
+
 esSith(X):- (esSensible(X),serVivo(X,Y,Z,oscuro)).
-miembroConsejo(X):-
-puedeSerFantasma(X):-
+
+miembroConsejo(X):- (esJedi(X), esMaestro(X));(esJedi(X), amigo(X, canciller_palpatine)).
+
+puedeSerFantasma(X):- estaMuerto(X), esJedi(X).
+
+guardianOrden(X):- formaSiete(X), esMaestro(X)
+
 pudeCopular(X):- (not(esJedi(X));especie(cerean,X)).
+
 formaSiete(X):- (estiloCombate(shoto, X),estiloCombate(shii_cho, X),
 estiloCombate(makashi, X),estiloCombate(soresu, X),estiloCombate(ataru, X),
 estiloCombate(shien, X),estiloCombate(niman, X)).
 
 puedeSerCorrompido(X):- estiloCombate(vapaad,X).
-
-elegidoFuerza(X):- 
