@@ -10,6 +10,13 @@ serVivo(kit_fisto,  11800, m, luz).
 serVivo(plo_koon, 11100, m, luz).
 serVivo(ki_adi_mundi, 10600, m, luz).
 serVivo(mace_windu, 12000, m, luz)
+serVivo(luke,13000,m,luz).
+serVivo(leia,15000,f,luz).
+serVivo(qui_gon_jinn,m,gris).
+serVivo(darth_vader,m,oscuridad).
+serVivo(darth_plagueis,m,oscuridad).
+serVivo(darth_maul,m,oscuridad).
+
 
 guardianOrden(mace_windu).
 maestroOrden(yoda).
@@ -26,6 +33,13 @@ especie(nautolano, kit_fisto).
 especie(kel_dor, plo_koon).
 especie(cerean, ki_adi_mundi).
 especie(humano, mace_windu).
+especie(humano, luke).
+especie(humano, leia).
+especie(humano,qui_gon_jinn).
+especie(humano,darth_vader).
+especie(especie_plagueis, darth_plagueis).
+especie(zabrak,darth_maul).
+
 
 
 estiloCombate(shoto, mace_windu).
