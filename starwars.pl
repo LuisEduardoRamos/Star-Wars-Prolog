@@ -55,8 +55,7 @@ estiloCombate(ataru,qui_gon_jinn).
 estiloCombate(shien,anakin).
 estiloCombate(shien,luke).
 estiloCombate(niman,darth_maul).
-
-estiloCombate(dun_moch,)
+estiloCombate(dun_moch,palpatine).
 
 estaMuerto(obi_wan).
 estaMuerto(anakin).
@@ -71,9 +70,9 @@ aprendiz(anakin, obi_wan).
 aprendiz(count_dooku, yoda).
 aprendiz(darth_tyranus, darth_sidious).
 
-separatista().
-republicano().
-rebelde().
+separatista(X):-serVivo(X,_,_,oscuridad).
+republicano(X):-(esJedi(X)) ; (serVivo(X,_,_,luz)).
+rebelde(serVivo(X,_,_,luz)).
 imperialista().
 
 esMaestro(obi_wan).
@@ -90,16 +89,22 @@ esJedi(X):- (esSensible(X),(serVivo(X,Y,Z,luz);serVivo(X,Y,Z,gris))).
 
 esSith(X):- (esSensible(X),serVivo(X,Y,Z,oscuro)).
 
-miembroConsejo(X):- (esJedi(X), esMaestro(X));(esJedi(X), amigo(X, canciller_palpatine)).
+miembroConsejo(X):- (esJedi(X), esMaestro(X)) ; (esJedi(X), amigo(X, canciller_palpatine)).
 
 puedeSerFantasma(X):- estaMuerto(X), esJedi(X).
 
 guardianOrden(X):- formaSiete(X), esMaestro(X)
 
-pudeCopular(X):- (not(esJedi(X));especie(cerean,X)).
+puedeCopular(X):- (not(esJedi(X));especie(cerean,X)).
 
 formaSiete(X):- (estiloCombate(shoto, X),estiloCombate(shii_cho, X),
 estiloCombate(makashi, X),estiloCombate(soresu, X),estiloCombate(ataru, X),
 estiloCombate(shien, X),estiloCombate(niman, X)).
 
 puedeSerCorrompido(X):- estiloCombate(vapaad,X).
+
+sufreOrden66(X):- esJedi(X).
+participaGuerrasClon(X):-(separatista(X)) ; (republicano(X)).
+seEscondeDelImperio(X):-rebelde(X,_,_,luz).
+
+
