@@ -12,10 +12,10 @@ serVivo(ki_adi_mundi, 10600, m, luz).
 serVivo(mace_windu, 12000, m, luz)
 serVivo(luke,13000,m,luz).
 serVivo(leia,15000,f,luz).
-serVivo(qui_gon_jinn,m,gris).
-serVivo(darth_vader,m,oscuridad).
-serVivo(darth_plagueis,m,oscuridad).
-serVivo(darth_maul,m,oscuridad).
+serVivo(qui_gon_jinn,13000,m,gris).
+serVivo(darth_vader,27700,m,oscuridad).
+serVivo(darth_plagueis,19000,m,oscuridad).
+serVivo(darth_maul,12000,m,oscuridad).
 
 maestroOrden(yoda).
 
@@ -73,7 +73,7 @@ aprendiz(darth_tyranus, darth_sidious).
 separatista(X):-serVivo(X,_,_,oscuridad).
 republicano(X):-(esJedi(X)) ; (serVivo(X,_,_,luz)).
 rebelde(serVivo(X,_,_,luz)).
-imperialista().
+
 
 esMaestro(obi_wan).
 esMaestro(yoda).
