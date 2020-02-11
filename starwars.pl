@@ -9,18 +9,25 @@ serVivo(ahsoka_tano, 13000, f, gris).
 serVivo(kit_fisto,  11800, m, luz).
 serVivo(plo_koon, 11100, m, luz).
 serVivo(ki_adi_mundi, 10600, m, luz).
-serVivo(mace_windu, 12000, m, luz)
+serVivo(mace_windu, 12000, m, luz).
 serVivo(luke,13000,m,luz).
 serVivo(leia,15000,f,luz).
 serVivo(qui_gon_jinn,13000,m,gris).
 serVivo(darth_vader,27700,m,oscuridad).
 serVivo(darth_plagueis,19000,m,oscuridad).
 serVivo(darth_maul,12000,m,oscuridad).
+serVivo(han_solo,3000,m,luz).
+serVivo(bail_organa,1000,m,luz).
+serVivo(jabba,1000,m,oscuridad).
+serVivo(chewbacca,3000,m,luz).
+
+
+
 
 maestroOrden(yoda).
 
 especie(humano, anakin).
-especie(humano, darth_tyranus)
+especie(humano, darth_tyranus).
 especie(humano, darth_sidious).
 especie(humano, palpatine).
 especie(humano, count_dooku).
@@ -37,6 +44,10 @@ especie(humano,qui_gon_jinn).
 especie(humano,darth_vader).
 especie(especie_plagueis, darth_plagueis).
 especie(zabrak,darth_maul).
+especie(humano,bail_organa).
+especie(humano,han_solo).
+especie(hutt,jabba).
+especie(chewbacca,wookiee).
 
 estiloCombate(shoto, mace_windu).
 estiloCombate(shii_cho, mace_windu).
@@ -56,10 +67,14 @@ estiloCombate(shien,anakin).
 estiloCombate(shien,luke).
 estiloCombate(niman,darth_maul).
 estiloCombate(dun_moch,palpatine).
+estiloCombate(shien,kit_fisto).
+estiloCombate(shien,plo_koon).
+estiloCombate(shien,ki_adi_mundi).
+
 
 estaMuerto(obi_wan).
 estaMuerto(anakin).
-estaMuerto(count_dooku).
+ estaMuerto(count_dooku).
 estaMuerto(yoda).
 estaMuerto(kit_fisto).
 estaMuerto(mace_windu).
@@ -70,9 +85,6 @@ aprendiz(anakin, obi_wan).
 aprendiz(count_dooku, yoda).
 aprendiz(darth_tyranus, darth_sidious).
 
-separatista(X):-serVivo(X,_,_,oscuridad).
-republicano(X):-(esJedi(X)) ; (serVivo(X,_,_,luz)).
-rebelde(serVivo(X,_,_,luz)).
 
 
 esMaestro(obi_wan).
@@ -83,17 +95,20 @@ esMaestro(ki_adi_mundi).
 
 amigo(anakin, canciller_palpatine).
 
-esSensible(X):-
+esJedi(X):- (serVivo(X,Y,Z,luz);serVivo(X,Y,Z,gris)).
 
-esJedi(X):- (esSensible(X),(serVivo(X,Y,Z,luz);serVivo(X,Y,Z,gris))).
+esSith(X):- serVivo(X,_,_,oscuridad).
 
-esSith(X):- (esSensible(X),serVivo(X,Y,Z,oscuro)).
+separatista(X):-serVivo(X,_,_,oscuridad).
+republicano(X):-(esJedi(X)) ; (serVivo(X,_,_,luz)).
+rebelde(X):- serVivo(X,Y,Z,luz), not(estiloCombate(_,X)).
+
 
 miembroConsejo(X):- (esJedi(X), esMaestro(X)) ; (esJedi(X), amigo(X, canciller_palpatine)).
 
 puedeSerFantasma(X):- estaMuerto(X), esJedi(X).
 
-guardianOrden(X):- formaSiete(X), esMaestro(X)
+guardianOrden(X):- formaSiete(X), esMaestro(X).
 
 puedeCopular(X):- (not(esJedi(X));especie(cerean,X)).
 
@@ -105,6 +120,6 @@ puedeSerCorrompido(X):- estiloCombate(vapaad,X).
 
 sufreOrden66(X):- esJedi(X).
 participaGuerrasClon(X):-(separatista(X)) ; (republicano(X)).
-seEscondeDelImperio(X):-rebelde(X,_,_,luz).
+seEscondeDelImperio(X):- rebelde(X).
 
 
